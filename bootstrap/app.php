@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__.'/../app/Http/Middleware/RoleMiddleware.php';
 
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -11,12 +12,14 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        $middleware->web(append: [
-            \App\Http\Middleware\HandleInertiaRequests::class,
-            \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
-        ]);
-
-        //
+        return $middleware
+            ->web(append: [
+                \App\Http\Middleware\HandleInertiaRequests::class,
+                \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
+            ])
+            ->alias([
+                'role' => \App\Http\Middleware\RoleMiddleware::class,
+            ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

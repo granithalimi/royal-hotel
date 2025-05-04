@@ -45,4 +45,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    public function hasRole(string $role): bool
+    {
+        // Example: Check if the user's role matches (adjust based on your DB structure)
+        return $this->role === $role; // Assuming a `role` column exists
+    }
 }
