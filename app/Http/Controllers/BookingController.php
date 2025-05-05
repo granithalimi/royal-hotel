@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Booking;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class BookingController extends Controller
 {
@@ -13,6 +14,7 @@ class BookingController extends Controller
     public function index()
     {
         //
+        return Inertia::render("Booking");
     }
 
     /**
@@ -29,6 +31,8 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         //
+        Booking::create(["user_id" => auth()->id(), "check_in" => $request->check_in, "check_out" => $request->check_out]);
+        return to_route("home");
     }
 
     /**
@@ -37,6 +41,9 @@ class BookingController extends Controller
     public function show(Booking $booking)
     {
         //
+        // return Inertia::render("", [
+        //     'my_bookings' => Booking::where("user_id", $auth()->id())->get();
+        // ])
     }
 
     /**
