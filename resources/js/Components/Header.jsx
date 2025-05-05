@@ -14,14 +14,18 @@ function Header() {
   return (
       <div className={`w-4/5 h-20 backdrop-blur-sm bg-white/10 rounded-full absolute ${top} left-0 right-0 mx-auto flex justify-between items-center duration-500`}>
       <div className='flex items-center gap-4'>
-        <a href={route("home")} className="w-16 h-16 ms-4 bg-white rounded-full">
+        <Link href={route("home")} className="w-16 h-16 ms-4 bg-white rounded-full">
             <img src={logo} alt="royal hotel logo" />
-        </a>
+        </Link>
         {
             (auth.user && auth.user.role == "admin") &&
             <Link href={route("dashboard")} className="text-gray-400 hover:text-white duration-300">Dashboard</Link>
         }
         <Link href={route("booking.index")} className="text-gray-400 hover:text-white duration-300">Book a Room</Link>
+        {
+            (auth.user) &&
+            <Link href={route("mybooking")} className="text-gray-400 hover:text-white duration-300">My Bookings</Link>
+        }
 
       </div>
             <div className="me-5 flex items-center justify-center">

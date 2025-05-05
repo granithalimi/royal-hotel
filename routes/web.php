@@ -5,6 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\TestController;
 use App\Models\User;
 use App\Models\Booking;
 use Inertia\Inertia;
@@ -22,6 +23,11 @@ Route::get('/', function () {
 Route::get("/home", function () {
     return Inertia::render('Home');
 })->name("home");
+Route::get('/test', function(){
+    return Inertia::render("MyBookings", [
+        "mybookings" => Booking::where("user_id", auth()->id())->get()
+    ]);
+})->name("mybooking");
 
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');

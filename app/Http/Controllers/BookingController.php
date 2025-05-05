@@ -41,9 +41,7 @@ class BookingController extends Controller
     public function show(Booking $booking)
     {
         //
-        // return Inertia::render("", [
-        //     'my_bookings' => Booking::where("user_id", $auth()->id())->get();
-        // ])
+        // return Inertia::render("MyBookings");
     }
 
     /**
