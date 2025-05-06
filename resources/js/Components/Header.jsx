@@ -2,6 +2,7 @@ import { Link, usePage, } from "@inertiajs/react";
 import { useEffect, useState } from "react"
 import logo from "../../assets/images/roytal_hotel_logo.png"
 import { RiArrowDownWideFill } from "react-icons/ri";
+import { CgProfile } from "react-icons/cg";
 
 function Header() {
     const { auth } = usePage().props
@@ -41,7 +42,6 @@ function Header() {
                         <button onClick={e => dropDownClick(e)} className={`relative text-gray-400 cursor-pointer px-3 py-2 bg-white/20 ${dropDown == false ? "rounded-lg" : "rounded-t-lg"} hover:text-white`}>
                             <div className="flex items-center gap-4">
                             <span>{auth.user.name}</span> <RiArrowDownWideFill/>
-
                     </div>
 
                             <div className={`px-1 py-2 bg-white/20 text-center ${dropDown == false ? "hidden" : ""} absolute top-full left-0 right-0 rounded-b-lg text-white`}>
@@ -55,7 +55,7 @@ function Header() {
                     :
                     <>
                         <button onClick={e => dropDownClick(e)} className={`relative text-gray-400 cursor-pointer px-3 py-2 bg-white/20 ${dropDown == false ? "rounded-lg" : "rounded-t-lg"} hover:text-white`}>
-                            DropDown
+                            <CgProfile className="w-20 text-gray-400 hover:text-white text-xl duration-300"/>
                             <div className={`px-1 py-2 bg-white/20 text-center ${dropDown == false ? "hidden" : ""} absolute top-full left-0 right-0 rounded-b-lg text-white`}>
                                 <Link className="hover:bg-black/40 px-3 py-1" href={route("login")}>Login</Link>
                             <br />

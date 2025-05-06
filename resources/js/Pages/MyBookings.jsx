@@ -21,7 +21,7 @@ function MyBookings({ mybookings }) {
             <div className="mx-auto w-2/3 py-5 rounded-lg  bg-white/10 flex justify-center items-center">
                 {
                     mybookings.length < 1 ?
-                        <h1>This shit is empty</h1>
+                        <h1 className="text-white text-xl font-bold">Booking list is empty</h1>
                     :
                     <table className="min-w-max w-11/12 table-auto border-spacing-y-4" >
                     <thead>
