@@ -31,7 +31,7 @@ class BookingController extends Controller
     public function store(Request $request)
     {
         //
-        Booking::create(["user_id" => auth()->id(), "check_in" => $request->check_in, "check_out" => $request->check_out]);
+        Booking::create(["user_id" => auth()->id(), "name" => $request->name, "check_in" => $request->check_in, "check_out" => $request->check_out,  "phone_number" => $request->phone]);
         return to_route("home");
     }
 
@@ -58,6 +58,8 @@ class BookingController extends Controller
     public function update(Request $request, Booking $booking)
     {
         //
+        Booking::where("id", $booking->id)->first()->update(['status' => $request->action]);
+        return redirect()->back();
     }
 
     /**
@@ -65,6 +67,8 @@ class BookingController extends Controller
      */
     public function destroy(Booking $booking)
     {
+        Booking::where("id", $booking->id)->first()->delete();
+        return redirect()->back();
         //
     }
 }

@@ -3,6 +3,7 @@ import bg from "../../assets/images/pexels-pixabay-271639.jpg"
 import { useForm } from "@inertiajs/react"
 function Booking() {
     const { data, setData, post, } = useForm({
+        name: "",
         check_in: "",
         check_out: "",
         phone: "",
@@ -17,6 +18,8 @@ function Booking() {
         <Header />
       <div className="mx-auto w-2/3 py-5 rounded-lg  bg-white/10 flex justify-center items-center">
       <form onSubmit={e => handleSubmit(e)} className="flex flex-col items-center gap-3">
+        <label>Name:</label>
+        <input type="text" name="name" onChange={e => setData("name", e.target.value)} className="bg-transparent border border-white rounded-lg" placeholder="Name" />
         <label>Check in:</label>
         <input type="date" name="check_in" onChange={e => setData("check_in", e.target.value)} className="bg-transparent border-white rounded-lg" />
         <label>Check out:</label>

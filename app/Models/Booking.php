@@ -12,7 +12,8 @@ class Booking extends Model
         "status",
         "check_in",
         "check_out",
-
+        "name",
+        "phone_number"
     ];
 
     public function user(){

@@ -1,28 +1,12 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head, useForm } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
 import Header from "../Components/Header.jsx"
 import bg from "../../assets/images/pexels-pixabay-271639.jpg"
 
 export default function Dashboard({ bookings }) {
-    const { data, setData, put, delete:destroy } = useForm({
-        action: "pending",
-    })
     const pending = "bg-gray-400 rounded-lg text-white font-bold"
     const accepted = "bg-green-400 rounded-lg text-white font-bold"
-    const canceled = "bg-orange-400 rounded-lg text-white font-bold"
-
-    const handleUpdate = (id, action) => {
-        if(confirm(`Are you sure you want to update this booking to ${action}?`)){
-            setData("action", action)
-            put(route("booking.update", id))
-        }
-    }
-
-    const handleDelete = e => {
-        if(confirm("Are you sure you want to delete this booking?")){
-            destroy(route("booking.destroy", e))
-        }
-    }
+    const canceled = "bg-red-400 rounded-lg text-white font-bold"
 
     return (
       <div className="bg-red-800 w-full h-screen bg-cover bg-fixed" style={{backgroundImage: `url(${bg})`}}>
@@ -66,15 +50,8 @@ export default function Dashboard({ bookings }) {
                                         ${(book.status == "accepted") && accepted}
                                         ${(book.status == "canceled") && canceled}`}>{book.status}</div>
                                     </td>
-                                    <td className="py-3 px-6 text-center flex flex-col justify-center items-end">
-                                        <div className="flex mb-2 gap-1">
-                                            <button onClick={e => handleUpdate(book.id, "pending")} className="px-3 py-1 bg-gray-400 rounded-lg">pending</button>
-                                            <button onClick={e => handleUpdate(book.id, "canceled")} className="px-3 py-1 bg-orange-400 rounded-lg">cancel</button>
-                                        </div>
-                                        <div className="flex gap-1">
-                                            <button onClick={e => handleUpdate(book.id, "accepted")} className="px-3 py-1 bg-green-400 rounded-lg">accept</button>
-                                            <button onClick={e => handleDelete(book.id)} className="px-3 py-1 bg-red-400 rounded-lg">delete</button>
-                                        </div>
+                                    <td className="py-3 px-6 text-center flex justify-center items-center">
+                                       <button className="px-3 py-1 bg-red-400 rounded-lg">pending</button>
                                     </td>
                                 </tr>
 

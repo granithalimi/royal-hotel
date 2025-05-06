@@ -23,21 +23,23 @@ Route::get('/', function () {
 Route::get("/home", function () {
     return Inertia::render('Home');
 })->name("home");
-Route::get('/test', function(){
+Route::get('/mybookings', function(){
     return Inertia::render("MyBookings", [
         "mybookings" => Booking::where("user_id", auth()->id())->get()
     ]);
 })->name("mybooking");
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('Dashboard', [
+        "bookings" => Booking::all(),
+    ]);
 })->middleware(['auth', 'verified', 'role:admin'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::resource('/booking', BookingController::class);
+    Route::resource('/booking', BookingController::class)->only(['store', 'index', "destroy", "update"]);
 
 });
 
