@@ -44,3 +44,17 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+
+
+
+                // {
+                //     auth.user ?
+                //         <div>
+                //             <Link href={route("profile.edit")}>Profile</Link>
+                //         <br/>
+                //             <Link href={route("logout")} method="post" as="button">Logout</Link>
+                //         </div>
+                //     :
+                // }
