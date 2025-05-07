@@ -58,7 +58,7 @@ class BookingController extends Controller
     public function update(Request $request, Booking $booking)
     {
         //
-        Booking::where("id", $booking->id)->first()->update(['status' => $request->action]);
+        Booking::where("id", $booking->id)->first()->update(['status' => $request->status]);
         return redirect()->back();
     }
 

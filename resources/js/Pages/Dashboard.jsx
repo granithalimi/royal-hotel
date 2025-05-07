@@ -1,20 +1,32 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import { Head, useForm } from '@inertiajs/react';
+import { Head, useForm, } from '@inertiajs/react';
+import { useEffect, useState } from "react"
 import Header from "../Components/Header.jsx"
 import bg from "../../assets/images/pexels-pixabay-271639.jpg"
+import Footer from "../Components/Footer.jsx"
 
 export default function Dashboard({ bookings }) {
     const { data, setData, put, delete:destroy } = useForm({
-        action: "pending",
+        status: "pending"
     })
     const pending = "bg-gray-400 rounded-lg text-white font-bold"
     const accepted = "bg-green-400 rounded-lg text-white font-bold"
     const canceled = "bg-orange-400 rounded-lg text-white font-bold"
 
+    const [pendingId, setPendingId] = useState(null);
+
+    useEffect(() => {
+        if (pendingId !== null) {
+            put(route("booking.update", pendingId), {
+                onFinish: () => setPendingId(null),
+            });
+        }
+    }, [data.status]);
+
     const handleUpdate = (id, action) => {
         if(confirm(`Are you sure you want to update this booking to ${action}?`)){
-            setData("action", action)
-            put(route("booking.update", id))
+            setData("status", action)
+            setPendingId(id);
         }
     }
 
@@ -25,10 +37,10 @@ export default function Dashboard({ bookings }) {
     }
 
     return (
-      <div className="bg-red-800 w-full h-screen bg-cover bg-fixed" style={{backgroundImage: `url(${bg})`}}>
+      <div className=" w-full h-screen bg-cover bg-fixed" style={{backgroundImage: `url(${bg})`}}>
             <Header  />
             <h1 className="text-center text-4xl font-extrabold text-white pt-32">Bookings</h1>
-            <div className="mx-auto w-2/3 py-5 mt-5 rounded-lg  bg-white/10 flex justify-center items-center">
+            <div className="mx-auto w-2/3 py-5 mt-5 mb-32 rounded-lg  bg-white/10 flex justify-center items-center">
                 <table className="min-w-max w-11/12 table-auto border-spacing-y-4">
                     <thead>
                         <tr className="text-gray-600 uppercase text-md leading-normal font-extrabold text-white">
@@ -83,7 +95,7 @@ export default function Dashboard({ bookings }) {
                     </tbody>
                 </table>
             </div>
-
+        <Footer />
         </div>
     );
 }

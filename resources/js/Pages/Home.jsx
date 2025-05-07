@@ -3,9 +3,11 @@ import { Head, Link, usePage } from '@inertiajs/react';
 import { useEffect, useState } from "react"
 import Header from '../Components/Header.jsx'
 import AboutUs from "../Components/AboutUs.jsx"
+import OurQuality from "../Components/OurQuality.jsx"
 import '../../assets/style.css'
 import front from "../../assets/images/home_bg.jpg"
 import bg from "../../assets/images/pexels-pixabay-271639.jpg"
+import Footer from "../Components/Footer.jsx"
 
 export default function Home() {
     const [left, setLeft] = useState("-left-[30%] blurr")
@@ -33,7 +35,10 @@ export default function Home() {
             <h1 className="text-center text-5xl text-white font-bold cormorant-upright-light">Where Luxury Meets Comfort – Your Perfect Escape Awaits.</h1>
         </div>
         </div>
-            <div className="w-full h-screen bg-yellow-100"></div>
+            <div className="w-full h-screen bg-yellow-100">
+                <OurQuality />
+        </div>
+        <Footer />
         </div>
     );
 }

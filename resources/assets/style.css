@@ -14,3 +14,19 @@
 .blurr{
     filter: blur(15px);
 }
+.hide-image{
+    transform: translateX(-200%);
+    filter: blur(15px);
+}
+.show-image{
+    transform: translateX(0);
+    filter: blur(0px);
+}
+.show-text{
+    transform: translateX(0);
+    filter: blur(0px);
+}
+.hide-text{
+    transform: translateX(200%);
+    filter: blur(15px);
+}

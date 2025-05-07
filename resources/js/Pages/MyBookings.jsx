@@ -1,6 +1,7 @@
 import Header from "../Components/Header.jsx"
 import bg from "../../assets/images/pexels-pixabay-271639.jpg"
 import { useForm } from "@inertiajs/react"
+import Footer from "../Components/Footer.jsx"
 
 function MyBookings({ mybookings }) {
     const pending = "bg-gray-400 rounded-lg text-white font-bold"
@@ -18,7 +19,7 @@ function MyBookings({ mybookings }) {
   return (
         <div className="w-full h-screen bg-cover bg-fixed pt-32" style={{backgroundImage: `url(${bg})`}}>
             <Header />
-            <div className="mx-auto w-2/3 py-5 rounded-lg  bg-white/10 flex justify-center items-center">
+            <div className="mx-auto w-2/3 py-5 rounded-lg mb-32 bg-white/10 flex justify-center items-center">
                 {
                     mybookings.length < 1 ?
                         <h1 className="text-white text-xl font-bold">Booking list is empty</h1>
@@ -78,6 +79,7 @@ function MyBookings({ mybookings }) {
 
                 }
             </div>
+            <Footer />
         </div>
   )
 }
