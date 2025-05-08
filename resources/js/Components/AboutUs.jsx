@@ -7,7 +7,7 @@ function AboutUs() {
         triggerOnce: true,
     })
   return (
-        <div className="w-full h-full ">
+        <div className="w-full h-full overflow-hidden">
             <div className="h-[15%] w-full flex items-center justify-center">
             <h1 className="text-black text-5xl font-extrabold text-center cormorant-upright-light">About Us</h1>
       </div>

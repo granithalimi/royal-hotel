@@ -39,7 +39,7 @@ function Header() {
                 {
                     auth.user ?
                     <>
-                        <button onClick={e => dropDownClick(e)} className={`relative text-gray-400 cursor-pointer px-3 py-2 bg-white/20 ${dropDown == false ? "rounded-lg" : "rounded-t-lg"} hover:text-white`}>
+                        <span onClick={e => dropDownClick(e)} className={`relative text-gray-400 cursor-pointer px-3 py-2 bg-white/20 ${dropDown == false ? "rounded-lg" : "rounded-t-lg"} hover:text-white`}>
                             <div className="flex items-center gap-4">
                             <span>{auth.user.name}</span> <RiArrowDownWideFill/>
                     </div>
@@ -49,7 +49,7 @@ function Header() {
                             <br />
                                 <Link className="hover:bg-black/40 px-3 py-1" href={route("logout")} method="post" as="button"href={route("logout")} method="post" as="button">Logout</Link>
                             </div>
-                        </button>
+                        </span>
                     </>
 
                     :

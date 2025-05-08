@@ -9,25 +9,24 @@ export default function Dashboard({ bookings }) {
     const { data, setData, put, delete:destroy } = useForm({
         status: "pending"
     })
+    const [preUpdatedId, setPreUpdatedId] = useState(null)
+
     const pending = "bg-gray-400 rounded-lg text-white font-bold"
     const accepted = "bg-green-400 rounded-lg text-white font-bold"
     const canceled = "bg-orange-400 rounded-lg text-white font-bold"
 
-    const [pendingId, setPendingId] = useState(null);
-
     useEffect(() => {
-        if (pendingId !== null) {
-            put(route("booking.update", pendingId), {
-                onFinish: () => setPendingId(null),
-            });
+        if(preUpdatedId !== null){
+            put(route("booking.update", preUpdatedId), {
+                onFinish: setPreUpdatedId(null)
+            })
         }
-    }, [data.status]);
+    }, [preUpdatedId])
+
 
     const handleUpdate = (id, action) => {
-        if(confirm(`Are you sure you want to update this booking to ${action}?`)){
-            setData("status", action)
-            setPendingId(id);
-        }
+        setData("status", action)
+        setPreUpdatedId(id)
     }
 
     const handleDelete = e => {
