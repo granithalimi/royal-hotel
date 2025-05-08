@@ -47,7 +47,7 @@ function Header() {
                             <div className={`px-1 py-2 bg-white/20 text-center ${dropDown == false ? "hidden" : ""} absolute top-full left-0 right-0 rounded-b-lg text-white`}>
                                 <Link className="hover:bg-black/40 px-3 py-1" href={route("profile.edit")}>Profile</Link>
                             <br />
-                                <Link className="hover:bg-black/40 px-3 py-1" href={route("logout")} method="post" as="button"href={route("logout")} method="post" as="button">Logout</Link>
+                                <Link className="hover:bg-black/40 px-3 py-1" href={route("logout")}  method="post" as="button">Logout</Link>
                             </div>
                         </span>
                     </>
