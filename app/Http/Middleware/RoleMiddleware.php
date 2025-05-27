@@ -17,6 +17,7 @@ class RoleMiddleware
 
         // 2. Check if user has the required role
         if (!auth()->user()->hasRole($role)) {
+
             abort(403, 'You need the "' . $role . '" role to access this.');
         }
 
